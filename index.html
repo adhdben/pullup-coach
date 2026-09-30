@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#3b82f6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="力训私教课">
+  <title>解锁引体向上——力训私教课</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="images/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero-card">
+      <img src="images/hero.webp" alt="准备挑战引体向上的少年">
+      <div class="hero-copy">
+        <h1>解锁引体向上——力训私教课</h1>
+        <p>每天完成一点，系统会根据你的表现自动调整下一次训练。</p>
+      </div>
+    </section>
+
+    <section class="panel progress-panel">
+      <div class="progress-head">
+        <div>
+          <div class="eyebrow">当前等级</div>
+          <div class="level-name" id="levelName">青铜</div>
+          <div class="muted" id="levelDesc">先把“挂住”和“肩膀会发力”练稳。</div>
+        </div>
+        <div class="eta-box">
+          <div class="eyebrow">预计解锁</div>
+          <div class="eta-value" id="etaText">先测基线</div>
+        </div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="muted" id="progressText">完成第一次基线后，这里会显示当前引体准备度。</div>
+    </section>
+
+    <section class="panel hidden" id="checkinPanel">
+      <div class="checkin-grid">
+        <div class="checkin-stat">
+          <div class="eyebrow">累计打卡</div>
+          <div class="checkin-number"><span id="totalDays">0</span> 天</div>
+        </div>
+        <div class="checkin-stat">
+          <div class="eyebrow">连续打卡</div>
+          <div class="checkin-number"><span id="streakDays">0</span> 天</div>
+        </div>
+      </div>
+      <div class="recent-title">最近 14 天</div>
+      <div class="recent-days" id="recentDays"></div>
+    </section>
+
+    <section class="panel" id="baselinePanel">
+      <h2>第一次：看看现在从哪里出发</h2>
+      <p class="muted">基线只在第一次出现。保存后，以后打开会直接进入当天训练。</p>
+      <div class="form-grid">
+        <label>体重（kg）
+          <select id="weight"></select>
+        </label>
+        <label>被动悬垂（秒）
+          <select id="hang"></select>
+        </label>
+        <label>肩胛引体（次）
+          <select id="scap"></select>
+        </label>
+        <label>屈臂悬垂（秒）
+          <select id="flex"></select>
+        </label>
+        <label>离心下降（秒）
+          <select id="ecc"></select>
+        </label>
+        <label>标准引体（次）
+          <select id="pullup"></select>
+        </label>
+      </div>
+      <button type="button" id="saveBaselineBtn" class="primary-btn">保存基线，生成今天训练</button>
+    </section>
+
+    <section class="panel hidden" id="trainingPanel">
+      <h2>今天的训练</h2>
+      <div class="coach-note" id="coachText">每张任务卡单独记录完成度；下一次同类任务会自动调节难度。</div>
+      <div id="taskList"></div>
+    </section>
+
+    <section class="panel hidden" id="feedbackPanel">
+      <h2>完成今天的训练</h2>
+      <div class="form-grid">
+        <label>整体有多累？
+          <select id="rpe">
+            <option value="3">比较轻松</option>
+            <option value="5" selected>刚刚好</option>
+            <option value="7">有点累</option>
+            <option value="9">很累</option>
+          </select>
+        </label>
+        <label>身体有没有不舒服？
+          <select id="pain">
+            <option value="no">没有</option>
+            <option value="mild">有一点</option>
+            <option value="yes">明显疼痛</option>
+          </select>
+        </label>
+      </div>
+      <button type="button" id="submitDayBtn" class="success-btn">完成今日打卡</button>
+      <div class="success-box" id="successBox">
+        <img src="images/success.webp" alt="打卡成功">
+        <div class="success-title">今天完成啦！</div>
+        <div class="muted">下一次训练会根据今天的完成情况自动调整。</div>
+      </div>
+    </section>
+
+    <section class="panel hidden" id="managePanel">
+      <button type="button" id="editBaselineBtn" class="secondary-btn">重新查看 / 修正基线</button>
+      <button type="button" id="resetBtn" class="danger-btn">清空本机数据</button>
+    </section>
+
+    <footer>
+      儿童训练以动作标准、无痛和充分恢复为前提。若出现持续肩、肘、腕疼痛，应停止相关动作并由家长或专业人员评估。
+    </footer>
+  </main>
+  <script src="app.js" defer></script>
+</body>
+</html>
